@@ -1,0 +1,53 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./resources/static/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+</head>
+<body class="login-bg">
+<div class="container">
+
+<h1 class="Title" >Ajouter un Revue</h1>
+<h2><a href="/document" class="btn btn-default">Liste des document</a></h2>
+
+<form method="post" th:action="@{/document/addRevue}" th:object="${revue}">
+<div class="login-form">
+  <p class="logoText"></p>
+  <div class="form-group row">
+    <label for="title" class="col-sm-2 col-form-label">Title</label>
+    <div class="col-sm-6">
+      <input type="text"  class="form-control" placeholder="title"   th:field="*{title}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="prix" class="col-sm-2 col-form-label">Prix</label>
+    <div class="col-sm-6">
+      <input type="text"  class="form-control"  placeholder="prix" th:field="*{prix}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="reference" class="col-sm-2 col-form-label">Reference</label>
+    <div class="col-sm-6">
+      <input type="text" class="form-control" placeholder="reference" th:field="*{reference}">
+    </div>
+  </div> 
+   <div class="form-group row">
+    <label for="annee_publication" class="col-sm-2 col-form-label">Annee de publication</label>
+    <div class="col-sm-6">
+      <input type="text"  class="form-control"  placeholder="Annee de publication" th:field="*{annee_publication}">
+    </div>
+  </div>
+  
+ 
+  <button type="submit" class="btn btn-danger mb-2">Ajouter</button>
+ </div>
+</form>
+</div>
+
+</body>
+</html>

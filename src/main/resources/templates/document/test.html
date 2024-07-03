@@ -1,0 +1,71 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajouter un Livre</title>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./resources/static/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<body>
+
+
+<h1>LISTE DES DOCUMENTS</h1>
+
+
+<div class="container">
+<h1>Liste des Adherents</h1>
+
+
+	
+	<table class="table table-striped">
+	<tr>
+
+		<th>id</th>
+		<th>prix</th>
+		<th>title</th>
+		<th>auteur</th>
+		<th>nbre page</th>
+		<th>lang</th>
+		
+		<th>reference</th>
+		<th>annee</th>
+		<th><a th:href="@{/document/add}" class="btn btn-success">Ajouter un document</a></th>
+	</tr>
+
+	
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Livre'}">
+		<td><p th:utext=${document.id} ></p></td>
+		<td><p th:utext=${document.prix} ></p></td>
+		<td><p th:utext=${document.title} >---</td>
+		<td><p th:utext=${document.auteur} ></p>---</td>
+		<td><p th:utext=${document.nombrePage} >---</td>
+		<td>
+		<a href="modifierEtudiantForm?id=<%=e.getId() %>" class="btn btn-success">Modifier</a>
+		<a href="supprimerEtudiant?id=<%=e.getId() %>" class="btn btn-danger">Supprimer</a>
+		</td>
+	</tr>	
+	
+
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Dictionnaire'}">
+		<td><p th:utext=${document.id} >---</p></td>
+		<td><p th:utext=${document.prix} ></p>---</td>
+		<td><p th:utext=${document.title} ></p>---</td>
+		<td><p th:utext=${document.langue} >---</p></td>
+	</tr>
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Revue'}">
+		<td><p th:utext=${document.id} ></p></td>
+		<td><p th:utext=${document.prix} ></p></td>
+		<td><p th:utext=${document.title} ></p>---</td>
+		<td><p th:utext=${document.reference  ></p>---</td>
+		<td><p th:utext=${document.annee_publication} ></p>---</td>
+	</tr>
+	
+
+</table>
+</div>
+
+
+</body>
+</html>

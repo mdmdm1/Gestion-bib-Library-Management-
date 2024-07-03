@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+ lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="utf-8"/>
+<title>Application Bibliotheque</title>
+	<link rel="stylesheet" type="text/css"
+	href="../css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}" />
+	<link rel="stylesheet" type="text/css"
+	href="../css/myStyle.css"
+	th:href="@{css/myStyle.css}" />
+</head>
+<body>
+	<header>
+	<div class="bg-image justify-content-center" 
+	     style="background-image: url('../img/bib.jpg');
+	            height: 45vh;">
+	
+	<h1 class="display-7 text-center text-dark bg-light" >Bibliotheque </h1>
+	</div>
+	</header>
+	<section layout:fragment="content">
+	
+    <div class="row bg-default d-flex justify-content-center">
+	
+		<div class="col-auto flex-grow-1 text-center bg-light "> 
+			<ul class="nav navbar-nav border">
+			<li><a th:href="@{/adherent}">Adherent</a></li>
+			<li><a th:href="@{/document/consulte}">Document</a></li>
+			<li><a th:href="@{/emprunt}">Emprunt</a></li>
+			</ul>
+		</div>	
+	
+	</div>
+	
+	</section>
+	<footer>
+	<div class="navbar-fixed-bottom">
+		<small>@notreBibliotheque</small>
+	</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajouter un Livre</title>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./resources/static/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<body>
+ <div class="row bg-default d-flex justify-content-center">
+	
+		<div class="col-auto flex-grow-1 text-center bg-light "> 
+			<ul class="nav navbar-nav border">
+			<li><a th:href="@{/}">Acceuil</a></li>
+			<li><a th:href="@{/adherent}">Adherent</a></li>
+			<li><a th:href="@{/document/consulte}">Document</a></li>
+			<li><a th:href="@{/emprunt}">Emprunt</a></li>
+			</ul>
+		</div>	
+	
+	</div>
+
+<div class="col-md-6">
+	<div class="panel panel-primary">
+			<div class="panel-heading">Recherche d'un Adherent</div>
+			<div class="panel-body">
+			<a th:href="@{/adherent/add}" class="btn btn-default">Ajouter un adherent</a>
+				 <form method="get" th:action="@{/adherent/consulte}" >
+				
+						<label for="CIN">CIN</label>
+						
+						<input type="text" class="form-control" name="CIN"/>
+						<button class="btn btn-primary" >OK</button>
+				</form> 
+				
+			</div>
+		</div>
+	</div>
+	
+	<div  class="col-mb-6" th:if="${adherent}">	
+	<div class="panel panel-primary"> 
+		<table class="table table-striped">
+		<tr>
+		
+			<th>Id</th>
+			<th>Nom</th>
+			<th>Prenom</th>
+			<th>CIN</th>
+			<th>Date de naissace</th>
+			<th>Adresse</th>
+			<th><a th:href="@{/adherent/add}" class="btn btn-default">Ajouter</a></th>
+		</tr>
+	
+		<tr>
+			<td th:utext=${adherent.id}></td>
+			<td th:utext=${adherent.nom}></td>
+			<td th:utext=${adherent.prenom}></td>
+			<td th:utext=${adherent.CIN}></td>
+			<td th:utext=${adherent.dateNaissance}></td>
+			<td th:utext=${adherent.adresse}></td>
+			<td>
+			<a th:href="@{/emprunt/edit/{id}('id'=${adherent.id})}" class="btn btn-success"><span class="glyphicon">&#x270f;</span></a>
+			<a th:href="@{/emprunt/delete/{id}('id'=${adherent.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+			</td>
+			
+		</tr>
+		
+		</table>
+	</div>
+	</div>	
+	<!-- <div  class="col-mb-6" th:if="$!{adherent}">	
+	<p class="">Pas trouver</p>
+	</div> -->
+
+</body>
+</html>

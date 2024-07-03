@@ -1,0 +1,144 @@
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Ajouter un Livre</title>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./resources/static/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<body>
+ <div class="row bg-default d-flex justify-content-center">
+	
+		<div class="col-auto flex-grow-1 text-center bg-light "> 
+			<ul class="nav navbar-nav border">
+			<li><a th:href="@{/}">Acceuil</a></li>
+			<li><a th:href="@{/adherent}">Adherent</a></li>
+			<li><a th:href="@{/document/consulte}">Document</a></li>
+			<li><a th:href="@{/emprunt}">Emprunt</a></li>
+			</ul>
+		</div>	
+	
+	</div>
+
+<h1></h1>
+<div class="container">
+<div class="col-md-6">
+	<div class="panel panel-primary">
+			<div class="panel-heading">Recherche d'un Document</div>
+				<div class="panel-body">
+			<a th:href="@{/document}" class="btn btn-default">Liste des documents</a>
+		
+				 <form method="get" th:action="@{/document/consulte}" >
+				
+						<label for="id">ID</label>
+						
+						<input type="text" class="form-control" name="id"/>
+						<button class="btn btn-primary" >OK</button>
+				</form> 
+				
+			</div>
+		</div>
+</div>
+<div th:if="${document}">
+
+<div  class="col-mb-6" th:if="${document.class.simpleName}=='Dictionnaire'" >	
+	<div class="panel panel-primary"> 
+		<table class="table table-striped">
+		<tr>
+		
+		<th>Type</th>
+		<th>Id</th>
+		<th>Prix</th>
+		<th>Title</th>
+		<th>Langue</th>
+		<th><a th:href="@{/document/addDictionnaire}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Dictionnaire</a>
+		</tr>
+	
+		<tr >
+		<td >Dictionnaire</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td th:utext=${document.langue} >---</td>
+		<td>
+		
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+	</tr>
+		
+		</table>
+	</div>
+</div>	
+
+<div  class="col-mb-6" th:if="${document.class.simpleName}=='Livre'" >	
+	<div class="panel panel-primary"> 
+		<table class="table table-striped">
+		<tr>
+		
+		<th>Type</th>
+		<th>Id</th>
+		<th>Prix</th>
+		<th>Title</th>
+		<th>Auteur</th>
+		<th>Nombre page</th>
+		
+		<th><a th:href="@{/document/addLivre}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Livre</a>
+		</tr>
+	
+		<tr>
+		<td >Livre</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td th:utext=${document.auteur} >---</td>
+		<td th:utext=${document.nombrePage} >---</td>
+		<td>
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+	</tr>
+		
+		</table>
+	</div>
+</div>	
+
+<div  class="col-mb-6" th:if="${document.class.simpleName}=='Revue'" >	
+	<div class="panel panel-primary"> 
+		<table class="table table-striped">
+		<tr>
+		
+		<th>Type</th>
+		<th>Id</th>
+		<th>Prix</th>
+		<th>Title</th>
+		<th>Reference</th>
+		<th>Annee</th>
+		
+		<th><a th:href="@{/document/addRevue}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Revue</a>
+		</tr>
+	
+		<tr>
+		<td >Revue</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td th:utext=${document.reference}></td>
+		<td th:utext=${document.annee_publication}></td>
+		<td>
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+		</tr>
+		
+		</table>
+	</div>
+</div>
+</div>
+</div>
+</body>
+</html>

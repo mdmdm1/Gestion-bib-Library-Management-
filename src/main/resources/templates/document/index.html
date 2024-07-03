@@ -1,0 +1,111 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<title>Listes des documents</title>
+<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+<link rel="stylesheet" href="./resources/static/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+<body>
+
+
+ <div class="row bg-default d-flex justify-content-center">
+	
+		<div class="col-auto flex-grow-1 text-center bg-light "> 
+			<ul class="nav navbar-nav border">
+			<li><a th:href="@{/}">Acceuil</a></li>
+			<li><a th:href="@{/adherent}">Adherent</a></li>
+			<li><a th:href="@{/document/consulte}">Document</a></li>
+			<li><a th:href="@{/emprunt}">Emprunt</a></li>
+			</ul>
+		</div>	
+	
+	</div>
+
+
+<div class="container">
+
+<h1>Liste des documents</h1>
+
+<div class="col-mb-6">
+
+	<a th:href="@{/document/consulte}" class="btn btn-default">Recherche</a>
+</div>		
+	<table class="table table-striped">
+	<tr>
+		<th>Type</th>
+		<th>Id</th>
+		<th>Prix</th>
+		<th>Title</th>
+		<th>Auteur</th>
+		<th>Nombre page</th>
+		<th>Langue</th>
+		
+		<th>Reference</th>
+		<th>Annee</th>
+		
+		<th><a th:href="@{/document/addDictionnaire}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Dictionnaire</a>
+		<a th:href="@{/document/addLivre}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Livre</a>
+		<a th:href="@{/document/addRevue}"  class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Revue</a></th>
+	
+	</tr>
+
+	
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Livre'}">
+		<td >Livre</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td th:utext=${document.auteur} >---</td>
+		<td th:utext=${document.nombrePage} >---</td>
+		<td>---</td>
+		<td>---</td>
+		<td>---</td>
+		<td>
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+	</tr>	
+	
+
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Dictionnaire'}">
+		<td >Dictionnaire</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td>---</td>
+		<td>---</td>
+		<td th:utext=${document.langue} >---</td>
+		<td>---</td>
+		<td>---</td>
+		<td>
+		
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+	</tr>
+	<tr th:each="document : ${documents}" th:if="${document.class.simpleName=='Revue'}">
+		<td >Revue</td>
+		<td th:utext=${document.id} ></td>
+		<td th:utext=${document.prix} ></td>
+		<td th:utext=${document.title} >---</td>
+		<td>---</td>
+		<td>---</td>
+		<td>---</td>
+		<td th:utext=${document.reference}></td>
+		<td th:utext=${document.annee_publication}></td>
+		<td>
+		<a th:href="@{/document/edit/{id}('id'=${document.id})}" class="btn btn-primary"><span class="glyphicon">&#x270f;</span></a>
+		<a th:href="@{/document/delete/{id}('id'=${document.id})}" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a>
+		</td>
+	</tr>
+	
+
+</table>
+</div>
+
+
+</body>
+</html>
